@@ -17,12 +17,46 @@ public class ParseString {
         String c = "";
 
         // remove extra spaces
-        for (int i = 0; i < b.length; i++) {
-            b[i] = b[i].replaceAll("\\s+", " ").replaceAll("\\s$", "");
-            if (b[i].matches("\\s.*")) {
-                b[i] = b[i].replaceFirst("\\s", "");
-            }
+        int ia = 0;
+        int iaa = 0;
+        int iaaa = 0;
+
+        // TODO тут не правильно
+        while (b[ia].matches("\\s.*")) {
+            b[ia] = b[ia].replaceFirst("\\s", "");
+            System.out.println("Найдены пробелы устраняю !!!" + b[ia] );
+            ia++;
         }
+
+        for (int i = 0; i < b.length ; i++) {
+            b[i] = b[i].replaceAll("[\\u00A0\\s]+", " ");
+        }
+
+        for (int i = 0; i < b.length ; i++) {
+            b[i] = b[i].trim();
+        }
+
+
+//        for (int i = 0; i < b.length; i++) {
+//            b[i] = b[i].trim();
+//            b[i] = b[i].replaceAll("\\s+", " ").replaceAll("\\s$", "");
+//            System.out.println("***" + b[i]);
+//            while (b[i].matches("\\s.*")) {
+//                b[i] = b[i].replaceFirst("\\s", "");
+//                System.out.println("Найдены пробелы устраняю !!!" + b[i] );
+//            }
+//        }
+
+        // remove extra tabs
+//        for (int i = 0; i < b.length; i++) {
+//            b[i] = b[i].replaceAll("\\t+", " ").replaceAll("\\t$", "");
+//            if (b[i].matches("\\t.*")) {
+//                b[i] = b[i].replaceFirst("\\t", "");
+//                System.out.println("Найдены табы устраняю !!!" + b[i] );
+//            }
+//        }
+
+
 
         ArrayList<String> list = new ArrayList<>();
 
@@ -43,7 +77,58 @@ public class ParseString {
                 list.remove(ff);
             }
         }
+        // TODO Что-то не то
+        for (int ffff = 0; ffff < list.size(); ffff++) {
+            if (list.get(ffff).matches("[^\\wА-яЁё]+")) {
+                System.out.println("Ага");
+                System.out.println("Ага: " + list.get(ffff));
+                list.remove(ffff);
+            }
+        }
+        for (int ffa = 0; ffa < list.size(); ffa++) {
+            if (list.get(ffa).length() == 0) {
+//                System.out.println("выловил еще значение с нулевой длинной");
+                list.remove(ffa);
+            }
+        }
 
+        try {
+
+            if ((list.get(list.size() - 4).matches("Отдел ПФР в Новозыбковском муниципальном районе")) || list.get(list.size() - 6).matches("Отдел ПФР в Новозыбковском муниципальном районе")) {
+                System.out.println("Обнаружен пресс-рулиз от ПФР 4");
+                for (int fff = 0; fff < 4; fff++) {
+                    list.remove(list.size() - 1);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Файл не ПФР");
+        }
+
+        try {
+
+            if ((list.get(list.size() - 5).matches("Отдел ПФР в Новозыбковском муниципальном районе")) || list.get(list.size() - 6).matches("Отдел ПФР в Новозыбковском муниципальном районе")) {
+                System.out.println("Обнаружен пресс-рулиз от ПФР 5");
+                for (int fff = 0; fff < 5; fff++) {
+                    list.remove(list.size() - 1);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Файл не ПФР");
+        }
+
+//        for (int fff = 0; fff < list.size(); fff++) {
+//            if (list.get(fff).matches("")) {
+////                System.out.println("выловил еще значение с нулевой длинной");
+//                list.remove(ff);
+//            }
+//        }
+
+
+        list.set(0, "<p style=\"line-height: normal; text-align: justify;\">" + list.get(0) + "</p>\n<hr id=\"system-readmore\" />");
+
+        for (int h = 1; h < list.size(); h++) {
+            list.set(h, "<p style=\"line-height: normal; text-align: justify;\">" + list.get(h) + "<br /><br /></p>");
+        }
 //        for (int kk = 0; kk < list.size(); kk++) {
 //            System.out.println("list clear " + list.get(kk) + " " + list.get(kk).length());
 //        }
