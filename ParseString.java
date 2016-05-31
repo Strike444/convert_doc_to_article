@@ -36,6 +36,27 @@ public class ParseString {
             b[i] = b[i].trim();
         }
 
+        for (int i = 0; i < b.length ; i++) {
+            if (b[i].matches(".*\u0013 HYPERLINK.*\u0001\u0014.*\u0015.*")) {
+                System.out.println("!!! Нашел линк");
+                int pos = b[i].indexOf('\u0013');
+                int posend = b[i].indexOf('\u0001');
+                String substring = b[i].substring(pos + 13, posend -1 );
+                System.out.println(substring);
+                int posNaz = b[i].indexOf('\u0014');
+                int posNazEnd = b[i].indexOf('\u0015');
+                String substringNaz = b[i].substring(posNaz + 1, posNazEnd);
+                System.out.println(substringNaz);
+                String substringNach = b[i].substring(0, pos);
+                String substringConec = b[i].substring(posNazEnd + 1 , b[i].length());
+                System.out.println(substringNach + "#" + substringConec);
+                b[i] = substringNach + "<a href=" + substring +"\">" + substringNaz + "</a>" + substringConec;
+                System.out.println(b[i]);
+            }
+
+        }
+
+
 
 //        for (int i = 0; i < b.length; i++) {
 //            b[i] = b[i].trim();
