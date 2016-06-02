@@ -60,8 +60,12 @@ public class DirScanner {
         File f;
         String path, file;
         boolean result = false;
+        String home = System.getProperty("user.home");
+//        System.out.println("Путь к хуому " + home);
         //       System.out.println("Enter the required path for search: ");
-        path = "/home/strike/article";
+        path = home + "/article";
+//        System.out.println(path);
+//        path = "/home/strike/article";
 //        path = input.nextLine();
         f = new File(path);
         File[] filesindir = f.listFiles();

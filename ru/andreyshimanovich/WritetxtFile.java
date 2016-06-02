@@ -16,7 +16,8 @@ public class WritetxtFile {
         try {
 //            pw = new PrintWriter(new FileOutputStream("d:\\temp\\1.txt"));
             if (System.getProperty("os.name").equals("Linux")) {
-                File f = new File("/home/strike/article/");
+                String home = System.getProperty("user.home");
+                File f = new File(home + "/article/");
                 if (f.exists() && f.isDirectory()) {
 //                    System.out.println("Каталог существует");
                 }
