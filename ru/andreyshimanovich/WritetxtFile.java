@@ -15,8 +15,21 @@ public class WritetxtFile {
 //            System.out.println("НУКА " + pf );
         try {
 //            pw = new PrintWriter(new FileOutputStream("d:\\temp\\1.txt"));
-            pw = new PrintWriter(new FileOutputStream("d:\\temp\\" + pathfail.getName().replaceAll(".doc","") + ".txt"));
+            if (System.getProperty("os.name").equals("Linux")) {
+                File f = new File("/home/strike/article/");
+                if (f.exists() && f.isDirectory()) {
+//                    System.out.println("Каталог существует");
+                }
+                else {
+                    f.mkdirs();
+                }
+                pw = new PrintWriter(new FileOutputStream("/home/strike/article/" + pathfail.getName().replaceAll(".doc", "") + ".txt"));
 //            System.out.println("ТРА ля ля " + pathfail.toString());
+            }
+            else {
+                pw = new PrintWriter(new FileOutputStream("d:\\temp\\" + pathfail.getName().replaceAll(".doc", "") + ".txt"));
+            }
+
         }
         catch (FileNotFoundException e) {
             System.out.println("Ошибка открытия файла txt");

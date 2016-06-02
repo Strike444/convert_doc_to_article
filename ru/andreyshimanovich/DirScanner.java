@@ -54,6 +54,42 @@ public class DirScanner {
 //            System.out.println("File located in the folder");
 //        else System.out.println("File was not found ");
     }
+
+    DirScanner(String a) {
+        Scanner input = new Scanner(System.in);
+        File f;
+        String path, file;
+        boolean result = false;
+        //       System.out.println("Enter the required path for search: ");
+        path = "/home/strike/article";
+//        path = input.nextLine();
+        f = new File(path);
+        File[] filesindir = f.listFiles();
+        // Перегоняем в ArreyList для выкидования не нужных файлов
+        ArrayList<File> listfiles = new ArrayList<>();
+        ArrayList<String> listdocfiles = new ArrayList<>();
+
+
+        for (int k = 0; k < filesindir.length; k++) {
+            listfiles.add(k, filesindir[k]);
+        }
+
+        for (int i = 0; i < listfiles.size(); i++) {
+            if (listfiles.get(i).toString().matches(".*.doc")) {
+
+                System.out.println(listfiles.get(i));
+                listdocfiles.add(listfiles.get(i).toString());
+            }
+        }
+        // Переводим в массив
+        String[] myArrayDoc = {};
+
+        myArrayDoc = listdocfiles.toArray(new String[listdocfiles.size()]);
+        itogmas = myArrayDoc;
+
+    }
+
+
     public String[] getItogmas(){
         return  itogmas;
     }

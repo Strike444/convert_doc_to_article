@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
- * Created by strike on 14.05.16.
+ * Created by Andrey Shimanovich on 14.05.16.
  */
 public class ParseString {
     public String d;

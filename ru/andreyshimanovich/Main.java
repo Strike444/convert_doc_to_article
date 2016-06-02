@@ -10,6 +10,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         GetText gt = new GetText();
+//        if (System.getProperty("os.name" ).equals("Linux")) {
+//            System.out.println("Используется линукс");
+//
+//        }
+//        else {
+//            System.out.println("Используется виндовс");
+//        }
         gt.getT();
 //        WritetxtFile wtext = new WritetxtFile(a);
 //        System.out.println("результат" + a);

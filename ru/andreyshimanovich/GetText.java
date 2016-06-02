@@ -4,6 +4,7 @@ package ru.andreyshimanovich;
  * Created by Andrey Shimanovich on 26.04.16.
  */
 
+import org.apache.poi.hsmf.datatypes.StringChunk;
 import org.apache.poi.hwpf.HWPFDocument;
 
 import java.io.File;
@@ -12,7 +13,22 @@ import java.io.IOException;
 
 public class GetText {
     public void getT() throws IOException {
-        DirScanner dr = new DirScanner();
+
+        DirScanner dr;
+
+        if (System.getProperty("os.name" ).equals("Linux")) {
+            System.out.println("Используется линукс");
+            DirScanner drr = new DirScanner("Linux");
+            dr = drr;
+
+        }
+        else {
+            System.out.println("Используется виндовс");
+            DirScanner drr = new DirScanner();
+            dr = drr;
+        }
+
+//        DirScanner dr = new DirScanner();
         String[] s = dr.getItogmas();
         for (int i = 0; i < s.length; i++) {
             File someFile = new File(s[i]);
@@ -27,5 +43,6 @@ public class GetText {
             WritetxtFile wtext = new WritetxtFile(ps.d, someFile);
         }
     }
+
 }
 
