@@ -115,6 +115,18 @@ public class ParseString {
 
         try {
 
+            if ((list.get(list.size() - 3).matches("Отдел ПФР в Новозыбковском муниципальном районе")) || list.get(list.size() - 6).matches("Отдел ПФР в Новозыбковском муниципальном районе")) {
+                System.out.println("Обнаружен пресс-рулиз от ПФР 4");
+                for (int fff = 0; fff < 3; fff++) {
+                    list.remove(list.size() - 1);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Файл не ПФР");
+        }
+
+        try {
+
             if ((list.get(list.size() - 4).matches("Отдел ПФР в Новозыбковском муниципальном районе")) || list.get(list.size() - 6).matches("Отдел ПФР в Новозыбковском муниципальном районе")) {
                 System.out.println("Обнаружен пресс-рулиз от ПФР 4");
                 for (int fff = 0; fff < 4; fff++) {
@@ -136,6 +148,18 @@ public class ParseString {
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Файл не ПФР");
         }
+        try {
+
+            if ((list.get(list.size() - 6).matches("Отдел ПФР в Новозыбковском муниципальном районе")) || list.get(list.size() - 6).matches("Отдел ПФР в Новозыбковском муниципальном районе")) {
+                System.out.println("Обнаружен пресс-рулиз от ПФР 4");
+                for (int fff = 0; fff < 6; fff++) {
+                    list.remove(list.size() - 1);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Файл не ПФР");
+        }
+
 
 //        for (int fff = 0; fff < list.size(); fff++) {
 //            if (list.get(fff).matches("")) {
@@ -144,12 +168,21 @@ public class ParseString {
 //            }
 //        }
 
+        list.remove(0);
 
         list.set(0, "<p style=\"line-height: normal; text-align: justify;\">" + list.get(0) + "</p>\n<hr id=\"system-readmore\" />");
+        list.set(1, "<p style=\"line-height: normal; text-align: justify;\">" + list.get(1) + "<br /><br />");
 
-        for (int h = 1; h < list.size(); h++) {
-            list.set(h, "<p style=\"line-height: normal; text-align: justify;\">" + list.get(h) + "<br /><br /></p>");
+        for (int h = 2; h < list.size()-1; h++) {
+            list.set(h, list.get(h) + "<br /><br />");
         }
+        int i = list.size();
+        System.out.println(i);
+        list.set(i-1, list.get(i-1) + "</p>");
+
+//        for (int h = 1; h < list.size(); h++) {
+//            list.set(h, "<p style=\"line-height: normal; text-align: justify;\">" + list.get(h) + "<br /><br /></p>");
+//        }
 //        for (int kk = 0; kk < list.size(); kk++) {
 //            System.out.println("list clear " + list.get(kk) + " " + list.get(kk).length());
 //        }
@@ -159,8 +192,14 @@ public class ParseString {
         String[] myArray = {}; // конвертируем ArrayList в массив
         myArray = list.toArray(new String[list.size()]);
 
-        for (int fff = 0; fff < myArray.length; fff++) {
+//        for (int fff = 0; fff < myArray.length; fff++) {
+//            c = c + myArray[fff] + "\r\n";
+//        }
+        for (int fff = 0; fff < 1; fff++) {
             c = c + myArray[fff] + "\r\n";
+        }
+        for (int fff = 1; fff < myArray.length; fff++) {
+            c = c + myArray[fff];
         }
 
         d = c;
