@@ -160,6 +160,19 @@ public class ParseString {
             System.out.println("Файл не ПФР");
         }
 
+        try {
+
+            if ((list.get(list.size() - 2).matches("Старший помощник Новозыбковского")) && (list.get(list.size() - 1).matches("межрайонного прокурора.*"))) {
+                System.out.println("Обнаружен пресс-рулиз от Прокуратуры 2");
+                for (int fff = 0; fff < 2; fff++) {
+                    list.remove(list.size() - 1);
+                }
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Файл не Прокуратура");
+        }
+
+
 
 //        for (int fff = 0; fff < list.size(); fff++) {
 //            if (list.get(fff).matches("")) {
